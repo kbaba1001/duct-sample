@@ -8,7 +8,8 @@
                  [duct/module.web "0.6.4"]
                  [duct/module.ataraxy "0.2.0"]
                  [duct/module.sql "0.4.2"]
-                 [org.postgresql/postgresql "42.1.4"]]
+                 [org.postgresql/postgresql "42.1.4"]
+                 [phrase "0.1-alpha2"]]
   :plugins [[duct/lein-duct "0.10.6"]]
   :main ^:skip-aot duct-sample.main
   :resource-paths ["resources" "target/resources"]
