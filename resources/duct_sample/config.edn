@@ -38,14 +38,4 @@
 
  :duct-sample.handler/user-destroy
  {:db #ig/ref :duct.database/sql}
-
- :duct.migrator/ragtime
- {:migrations [#ig/ref :duct-sample/users]}
-
- [:duct.migrator.ragtime/sql :duct-sample/users]
- {:up ["CREATE TABLE users (
-          id    SERIAL PRIMARY KEY,
-          name  varchar(255),
-          email varchar(255)
-        );"]
-  :down ["DROP TABLE users;"]}}
+}
