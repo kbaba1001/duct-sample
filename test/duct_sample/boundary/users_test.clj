@@ -5,7 +5,7 @@
             [fipp.edn :refer (pprint) :rename {pprint fipp}])
   (:use [duct.database.sql]))
 
-(def db-spec "jdbc:postgresql://localhost:5432/duct-sample-test?user=postgres&password=postgres")
+(def db-spec "jdbc:postgresql://localhost:5432/duct-sample-test?user=postgres&password=")
 
 ; これでSQLを実際のデータベースで実行できる。
 ; use ではなく require だと -> がうまく出来なかった

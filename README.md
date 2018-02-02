@@ -4,6 +4,13 @@ FIXME: description
 
 ## Developing
 
+### 開発環境
+
+```
+docker-compose run db createdb -h db -U postgres -w duct-sample-development
+docker-compose run db createdb -h db -U postgres -w duct-sample-test
+```
+
 ### Setup
 
 When you first clone this repository, run:
