@@ -1,4 +1,4 @@
 db:
-  image: postgres:latest
+  build: containers/postgres
   ports:
     - "5432:5432"
