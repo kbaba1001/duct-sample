@@ -6,6 +6,8 @@
             [clojure.java.io :as io]
             [duct.core :as duct]
             [duct.core.repl :as duct-repl]
+            [ragtime.repl :as ragtime-repl]
+            [ragtime.jdbc :as jdbc]
             [eftest.runner :as eftest]
             [integrant.core :as ig]
             [integrant.repl :refer [clear halt go init prep reset]]
@@ -18,6 +20,18 @@
 
 (defn test []
   (eftest/run-tests (eftest/find-tests "test")))
+
+; NOTE migration用のメソッド。env は "test" か "dev" を渡す
+(defn read-config-env [env]
+  (duct/read-config (io/resource (str env ".edn"))))
+
+(defn migration-config [env]
+  (let [url (-> (read-config-env env) :duct.module/sql :database-url)]
+    {:datastore  (jdbc/sql-database {:connection-uri url})
+     :migrations (jdbc/load-resources "migrations")}))
+
+(defn migrate [env]
+  (ragtime-repl/migrate (migration-config env)))
 
 (clojure.tools.namespace.repl/set-refresh-dirs "dev/src" "src" "test")
 
