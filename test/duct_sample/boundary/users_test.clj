@@ -35,3 +35,10 @@
       (is (= "kbaba@example.com" (:email user-data))
       (is (= "kbaba" (:name user-data)))
     ))))
+
+(deftest test-create-and-get-user
+  (testing "create and get user"
+    (let [user-id (:id (first (users/create-user db {:name "user1" :email "user1@example.com"})))
+          user-data (first (users/get-user db user-id))]
+      (is (= "user1" (:name user-data)))
+      (is (= "user1@example.com" (:email user-data))))))
