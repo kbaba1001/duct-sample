@@ -29,19 +29,22 @@
 
 (use-fixtures :once my-test-fixture)
 
+; -----------------------------
+
 (deftest test-get-users
   (testing "get users"
     (let [user-data (first (users/get-users db))]
-      (is (= "kbaba@example.com" (:email user-data))
-      (is (= "kbaba" (:name user-data)))
-    ))))
+      (are [expected actual] (= expected actual)
+        "kbaba@example.com" (:email user-data)
+        "kbaba" (:name user-data)))))
 
 (deftest test-create-and-get-user
   (testing "create and get user"
     (let [user-id (:id (first (users/create-user db {:name "user1" :email "user1@example.com"})))
           user-data (first (users/get-user db user-id))]
-      (is (= "user1" (:name user-data)))
-      (is (= "user1@example.com" (:email user-data))))))
+      (are [expected actual] (= expected actual)
+        "user1" (:name user-data)
+        "user1@example.com" (:email user-data)))))
 
 (deftest test-update-user
   (testing "update user"
