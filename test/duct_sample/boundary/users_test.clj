@@ -42,3 +42,12 @@
           user-data (first (users/get-user db user-id))]
       (is (= "user1" (:name user-data)))
       (is (= "user1@example.com" (:email user-data))))))
+
+(deftest test-update-user
+  (testing "update user"
+    (let [user-id (:id (first (users/create-user db {:name "user1" :email "user1@example.com"})))
+          updated-user-id (:id (first (users/update-user db user-id {:name "user2" :email "user2@example.com"})))
+          user-data (first (users/get-user db user-id))]
+      (are [expected actual] (= expected actual)
+        "user2" (:name user-data)
+        "user2@example.com" (:email user-data)))))
