@@ -41,7 +41,7 @@ docker-compose up
 psql -h localhost -p 5432 -U postgres -w -d duct-sample-test -Xf sql/test.sql
 
 # pg_prove によるテストの実行
-docker-compose run db bash -c "pg_prove -h db -p 5432 -d duct-sample-test -U postgres sql-tests/*.sql"
+docker-compose run db bash -c "pg_prove -h db -d duct-sample-test -U postgres sql-tests/*.sql"
 ```
 
 ### Setup
