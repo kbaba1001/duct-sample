@@ -32,6 +32,18 @@ repl で user の名前空間で次を実行する。
 
 参照: https://github.com/weavejester/ragtime/wiki/Getting-Started
 
+## Test
+
+### pgTAP による SQL のテスト
+
+```bash
+docker-compose up
+psql -h localhost -p 5432 -U postgres -w -d duct-sample-test -Xf sql/test.sql
+
+# pg_prove によるテストの実行
+docker-compose run db bash -c "pg_prove -h db -d duct-sample-test -U postgres sql-tests/*.sql"
+```
+
 ### Setup
 
 When you first clone this repository, run:

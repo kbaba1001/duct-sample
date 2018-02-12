@@ -1,4 +1,6 @@
 db:
-  build: containers/postgres
+  build: .
   ports:
     - "5432:5432"
+  volumes:
+    - .:/sql-tests
